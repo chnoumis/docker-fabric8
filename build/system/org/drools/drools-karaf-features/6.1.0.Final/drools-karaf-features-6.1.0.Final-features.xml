@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="camel-drools-example-6.1.0.Final"
+          xmlns="http://karaf.apache.org/xmlns/features/v1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.0.0 http://karaf.apache.org/xmlns/features/v1.0.0">
+
+    <repository>mvn:org.apache.camel.karaf/apache-camel/2.10.3/xml/features</repository>
+    <repository>mvn:org.apache.cxf.karaf/apache-cxf/2.6.6/xml/features</repository>
+
+    <feature name="drools-common" version="6.1.0.Final" description="Drools Commons">
+        <feature version="[2.6,3.0)">cxf-specs</feature>
+        <bundle>mvn:com.google.protobuf/protobuf-java/2.5.0</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.antlr/3.5_1</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.xstream/1.4.3_1</bundle>
+        <bundle start-level='10'>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.jaxb-api-2.2/1.9.0</bundle>
+        <!-- bundle start-level='10'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jaxb-xjc/2.2.1.1_2</bundle -->
+        <!-- bundle start-level='10'>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.jaxb-impl/2.2.1.1_2</bundle -->
+        <bundle>mvn:org.eclipse.persistence/org.eclipse.persistence.moxy/2.4.0</bundle>
+    	<bundle>mvn:org.eclipse.persistence/org.eclipse.persistence.core/2.4.0</bundle>
+    	<bundle>mvn:org.eclipse.persistence/org.eclipse.persistence.antlr/3.2.0</bundle>                
+        <bundle>mvn:org.mvel/mvel2/2.2.1.Final</bundle>
+        <bundle>wrap:mvn:org.eclipse.jdt.core.compiler/ecj/4.2.1$Bundle-SymbolicName=Eclipse-JDT-Compiler&amp;Bundle-Version=4.2.1</bundle>
+        <bundle>wrap:mvn:org.codehaus.janino/janino/2.6.1$Bundle-SymbolicName=Codehaus-Janino&amp;Bundle-Version=2.6.1</bundle>
+        <bundle>mvn:org.apache.geronimo.specs/geronimo-atinject_1.0_spec/1.0</bundle>
+        <bundle>wrap:mvn:javax.enterprise/cdi-api/1.0-SP4</bundle>
+    </feature>
+
+    <feature name="drools-module" version="6.1.0.Final" description="Drools core">
+        <feature version="6.1.0.Final">drools-common</feature>
+        <feature version="6.1.0.Final">kie</feature>
+        <bundle>mvn:org.drools/drools-core/6.1.0.Final</bundle>
+        <bundle>mvn:org.drools/drools-compiler/6.1.0.Final</bundle>
+        <bundle>mvn:org.drools/drools-osgi-integration/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="drools-templates" version="6.1.0.Final" description="Drools Templates">
+        <bundle>mvn:org.drools/drools-templates/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="drools5-spring" version="6.1.0.Final" description="Drools5 Spring">
+        <feature version="[3.0,4.0)">spring</feature>
+        <bundle>mvn:org.drools/drools-spring-legacy5/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="drools5-camel" version="6.1.0.Final" description="Drools5 Camel">
+        <feature version="6.1.0.Final">drools-module</feature>
+        <feature version="6.1.0.Final">drools5-spring</feature>
+        <feature version="2.10.3">camel</feature>
+        <feature version="2.10.3">camel-cxf</feature>
+        <feature version="[2.6,3.0)">cxf-specs</feature>
+        <feature version="[2.6,3.0)">cxf-core</feature>
+        <feature version="[2.6,3.0)">cxf-jaxrs</feature>
+        <bundle>mvn:org.drools/drools-camel-legacy5/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="drools-decisiontable" description="Drools Decision Tables" version="6.1.0.Final">
+        <feature version="6.1.0.Final">drools-module</feature>
+        <feature version="6.1.0.Final">drools-templates</feature>
+        <bundle>mvn:commons-codec/commons-codec/1.7</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.poi/3.9_2</bundle>
+        <bundle>mvn:org.drools/drools-decisiontables/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="drools-jpa" version="6.1.0.Final" description="Drools JPA">
+        <feature version="6.1.0.Final">drools-module</feature>
+        <feature version="[3.0,4.0)">spring-orm</feature>
+        <feature version="[1.0.1,2.0)">jpa</feature>
+        <bundle>mvn:org.drools/drools-persistence-jpa/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="kie" version="6.1.0.Final">
+        <bundle>mvn:org.kie/kie-api/6.1.0.Final</bundle>
+        <bundle>mvn:org.kie/kie-internal/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="kie-ci" version="6.1.0.Final">
+        <bundle>mvn:org.kie/kie-ci-osgi/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="kie-spring" version="6.1.0.Final">
+        <feature version="6.1.0.Final">kie</feature>
+        <feature version="6.1.0.Final">drools-jpa</feature>
+        <feature version="6.1.0.Final">jbpm</feature>
+        <feature version="6.1.0.Final">jbpm-human-task</feature>
+        <bundle>mvn:org.kie/kie-spring/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="kie-aries-blueprint" version="6.1.0.Final">
+        <feature version="6.1.0.Final">kie</feature>
+        <feature version="6.1.0.Final">drools-jpa</feature>
+        <feature version="6.1.0.Final">jbpm</feature>
+        <feature version="6.1.0.Final">jbpm-human-task</feature>
+        <bundle>mvn:org.kie/kie-aries-blueprint/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="kie-camel" version="6.1.0.Final">
+        <feature version="6.1.0.Final">kie</feature>
+        <feature version="6.1.0.Final">kie-spring</feature>
+        <feature version="6.1.0.Final">jbpm</feature>
+        <feature version="2.10.3">camel</feature>
+        <feature version="2.10.3">camel-cxf</feature>
+        <feature version="[2.6,3.0)">cxf-specs</feature>
+        <feature version="[2.6,3.0)">cxf-core</feature>
+        <feature version="[2.6,3.0)">cxf-jaxrs</feature>
+        <bundle>mvn:org.kie/kie-camel/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="jbpm-commons" version="6.1.0.Final" description="jBPM Commons">
+        <bundle>mvn:org.apache.servicemix.specs/org.apache.servicemix.specs.scripting-api-1.0/2.4.0</bundle>
+        <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.quartz/1.8.5_2</bundle>
+        <bundle>mvn:org.jboss.spec.javax.servlet/jboss-servlet-api_3.0_spec/1.0.2.Final</bundle>
+        <bundle>mvn:org.jboss.spec.javax.security.jacc/jboss-jacc-api_1.5_spec/1.0.0.Final</bundle>
+        <bundle>mvn:joda-time/joda-time/1.6.2</bundle>
+        <bundle>mvn:org.jboss.spec.javax.interceptor/jboss-interceptors-api_1.2_spec/1.0.0.Final</bundle>
+        <bundle>mvn:org.jboss.spec.javax.jms/jboss-jms-api_1.1_spec/1.0.1.Final</bundle>
+        <bundle>mvn:org.hibernate.javax.persistence/hibernate-jpa-2.1-api/1.0.0.Final</bundle>
+        <bundle>mvn:org.jboss.spec.javax.transaction/jboss-transaction-api_1.2_spec/1.0.0.Final</bundle>
+    </feature>
+
+    <feature name="jbpm-human-task" version="6.1.0.Final" description="jBPM engine">
+        <bundle>mvn:org.codehaus.jackson/jackson-core-asl/1.9.9</bundle>
+        <bundle>mvn:org.jbpm/jbpm-human-task-core/6.1.0.Final</bundle>
+        <bundle>mvn:org.jbpm/jbpm-human-task-workitems/6.1.0.Final</bundle>
+        <bundle>mvn:org.jbpm/jbpm-human-task-jpa/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="jbpm" version="6.1.0.Final" description="jBPM engine">
+        <feature version="6.1.0.Final">drools-module</feature>
+        <feature version="6.1.0.Final">drools-jpa</feature>
+        <feature version="6.1.0.Final">jbpm-commons</feature>
+        <feature version="6.1.0.Final">jbpm-human-task</feature>
+        <bundle>mvn:org.jbpm/jbpm-flow-builder/6.1.0.Final</bundle>
+        <bundle>mvn:org.jbpm/jbpm-flow/6.1.0.Final</bundle>
+        <bundle>mvn:org.jbpm/jbpm-bpmn2/6.1.0.Final</bundle>
+        <bundle>mvn:org.jbpm/jbpm-audit/6.1.0.Final</bundle>
+        <bundle>mvn:org.jbpm/jbpm-runtime-manager/6.1.0.Final</bundle>
+        <bundle>mvn:org.jbpm/jbpm-persistence-jpa/6.1.0.Final</bundle>
+    </feature>
+
+    <!--
+             <bundle>wrap:mvn:org.apache.geronimo.specs/geronimo-jacc_1.1_spec/1.0</bundle>
+            <bundle>wrap:mvn:org.jboss.weld/weld-core/1.1.13.Final</bundle>
+            <bundle>wrap:mvn:org.jboss.solder/solder-api/3.2.0.Final</bundle>
+            <bundle>wrap:mvn:org.apache.helix/helix-core/0.6.1-incubating</bundle>
+            <bundle>wrap:mvn:javax.security/jacc/1.0</bundle>
+            <bundle>mvn:org.jbpm/jbpm-audit/6.1.0.Final</bundle>
+            <bundle>mvn:org.jbpm/jbpm-shared-services/6.1.0.Final</bundle>
+            <bundle>mvn:org.jbpm/jbpm-runtime-manager/6.1.0.Final</bundle>
+
+        <feature name="jbpm-human-task" version="6.1.0.Final" description="jBPM Human Task">
+            <feature version="6.1.0.Final">jbpm</feature>
+            <bundle>mvn:org.jbpm/jbpm-human-task-core/6.1.0.Final</bundle>
+            <bundle>mvn:org.jbpm/jbpm-human-task-workitems/6.1.0.Final</bundle>
+            <bundle>mvn:org.jbpm/jbpm-human-task-audit/6.1.0.Final</bundle>
+            <bundle>mvn:org.jbpm/jbpm-human-task-jpa/6.1.0.Final</bundle>
+            <bundle>mvn:org.jbpm/jbpm-persistence-jpa/6.1.0.Final</bundle>
+        </feature>-->
+
+    <feature name="drools5-camel-example" version="6.1.0.Final" description="Drools5 Spring Camel Example">
+        <feature version="6.1.0.Final">drools-module</feature>
+        <feature version="6.1.0.Final">drools-decisiontable</feature>
+        <feature version="6.1.0.Final">drools5-spring</feature>
+        <feature version="6.1.0.Final">drools5-camel</feature>
+        <bundle>mvn:org.drools/drools-camel-example/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="drools-decision-table-kie-spring-camel-example" version="6.1.0.Final" description="Drools Decision Table Kie Spring Camel Example">
+        <feature version="6.1.0.Final">drools-module</feature>
+        <feature version="6.1.0.Final">drools-decisiontable</feature>
+        <feature version="6.1.0.Final">kie-spring</feature>
+        <feature version="6.1.0.Final">kie-camel</feature>
+        <bundle start-level="100">mvn:org.drools/spring-camel-drools-decision-table-example/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="drools-decision-kie-blueprint-camel-example" version="6.1.0.Final"
+             description="Drools Decision Table Kie Blueprint Camel Example">
+        <feature version="6.1.0.Final">drools-module</feature>
+        <feature version="6.1.0.Final">drools-decisiontable</feature>
+        <feature version="6.1.0.Final">kie-aries-blueprint</feature>
+        <feature version="6.1.0.Final">kie-camel</feature>
+        <bundle>mvn:org.drools/blueprint-camel-drools-decision-table-example/6.1.0.Final</bundle>
+    </feature>
+
+    <feature name="jbpm-example" version="6.1.0.Final" description="jBPM Spring Example">
+        <feature version="6.1.0.Final">jbpm</feature>
+        <bundle>mvn:org.drools/spring-jbpm-osgi-example/6.1.0.Final</bundle>
+    </feature>
+
+</features>
