@@ -12,7 +12,7 @@ echo Connecting to ZooKeeper:       $FABRIC8_ZOOKEEPER_URL
 echo Environment:                   $FABRIC8_FABRIC_ENVIRONMENT
 echo Using bindaddress:             $FABRIC8_BINDADDRESS
 
-echo "admin=${ADMIN_USERNAME},${ADMIN_PASSWORD}" >> users.properties
+echo "${ADMIN_USERNAME}=${ADMIN_PASSWORD},admin,manager,viewer" > /opt/fabric8/etc/users.properties
 
 cp -rf /opt/fabric8/build/bin /opt/fabric8/
 

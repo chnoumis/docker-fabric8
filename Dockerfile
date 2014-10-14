@@ -57,7 +57,7 @@ ENV FABRIC8_JAVA_MAX_PERM_MEM 128M
 
 EXPOSE 1099 2181 8101 8181 9300 9301 44444 61616
 
-ADD build /opt/fabric8/build
+ADD fabric8 /opt/fabric8/build
 
 # lets default to the fabric8 dir so folks can more easily navigate to the data/logs
 WORKDIR /opt/fabric8
