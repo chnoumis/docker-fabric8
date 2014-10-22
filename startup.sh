@@ -21,4 +21,8 @@ if [ $FABRIC8_ECLIPSELINK_MOXY = "true" ]; then
 fi
 
 # Use exec to replace shell with process to ensure signals get handled correctly
-exec /opt/fabric8/bin/fabric8 server
+if [ $FABRIC8_FABRIC = "true" ]; then
+	exec /opt/fabric8/bin/fabric8 server
+else
+	exec /opt/fabric8/bin/karaf server
+fi	
